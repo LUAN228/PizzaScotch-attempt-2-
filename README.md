@@ -1,5 +1,5 @@
 <div align="center">
-<img width="256" height="256" alt="PizzaScotch Logo" src="https://github.com/user-attachments/assets/ef8bdd5c-d407-4b3c-a4d5-07b25e8bbc70" />
+<img width="256" height="256" alt="PizzaScotch Logo" src="icon.png" />
 </div>
 
 <h1 align="center">🍕 PizzaScotch 🥧</h1>
