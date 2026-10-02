@@ -679,18 +679,29 @@ elseif(PLATFORM STREQUAL "android")
         add_compile_definitions(ENABLE_VM_STUB_LOGS)
     endif()
 
-    # stb_image
+        # stb_image
     target_include_directories(butterscotch PUBLIC vendor/stb/image)
     # stb_vorbis (for miniaudio's OGG decoding)
     target_include_directories(butterscotch PUBLIC vendor/stb/vorbis)
     # bzip2
     target_link_libraries(butterscotch PRIVATE bzip2)
+    # --- CONFIGURAÇÃO DO FMOD PARA ANDROID ---
+    target_include_directories(butterscotch PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/vendor/fmod/include)
 
-    # Android NDK system libraries:
+    add_library(fmod SHARED IMPORTED)
+    set_target_properties(fmod PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/fmod/lib/android/${ANDROID_ABI}/libfmod.so)
+
+    add_library(fmodstudio SHARED IMPORTED)
+    set_target_properties(fmodstudio PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/fmod/lib/android/${ANDROID_ABI}/libfmodstudio.so)
+    # -----------------------------------------
+
+    # Android NDK system libraries e FMOD:
     # - log: __android_log_*
     # - GLESv3: OpenGL ES 3.0 functions
-    # - OpenSLES: miniaudio's OpenSL ES backend (it dlopen's libaaudio.so at runtime when available, so no link-time aaudio dep)
-    target_link_libraries(butterscotch PRIVATE log GLESv3 OpenSLES bzip2 stb_ds sha1 stb_vorbis)
+    # - OpenSLES: miniaudio's OpenSL ES backend
+    target_link_libraries(butterscotch PRIVATE log GLESv3 OpenSLES bzip2 stb_ds sha1 stb_vorbis fmod fmodstudio)
 elseif(PLATFORM STREQUAL "ps2")
     file(GLOB DEBUG_FONT_SOURCES src/debug_font/*.c)
     target_sources(butterscotch PRIVATE ${DEBUG_FONT_SOURCES})
