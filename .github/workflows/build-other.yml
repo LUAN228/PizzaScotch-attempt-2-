@@ -29,6 +29,14 @@ jobs:
           restore-keys: |
             ccache-android-
 
+      - name: Fix FMOD path structure
+        run: |
+          if [ -d "vendor/vendor/fmod" ]; then
+            echo "Ajustando caminho da pasta FMOD..."
+            rm -rf vendor/fmod
+            mv vendor/vendor/fmod vendor/fmod
+          fi
+
       - name: Build APK
         run: |
           cd src/android/frontend
