@@ -50,6 +50,11 @@ PizzaScotch inherits bytecode compatibility from Butterscotch, supporting games 
 
 ---
 
+### warning:
+the project is still a work in progress, so there might be some issues or it might be incomplete. I'm still working on it, but I'll get a good version ready.
+
+---
+
 ## 🛠️ Building for Android
 
 PizzaScotch is built using CMake and the Android NDK.
@@ -69,3 +74,10 @@ cmake -DPLATFORM=android \
       -DANDROID_PLATFORM=android-21 \
       ..
 make
+
+
+
+
+
+
+
