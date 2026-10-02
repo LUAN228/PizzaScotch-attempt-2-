@@ -685,7 +685,7 @@ elseif(PLATFORM STREQUAL "android")
     target_include_directories(butterscotch PUBLIC vendor/stb/vorbis)
     # bzip2
     target_link_libraries(butterscotch PRIVATE bzip2)
-    # --- CONFIGURAÇÃO DO FMOD PARA ANDROID ---
+    # --- FMOD CONFIGURATION FOR ANDROID ---
     target_include_directories(butterscotch PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/vendor/fmod/include)
 
     add_library(fmod SHARED IMPORTED)
