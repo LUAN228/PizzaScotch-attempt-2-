@@ -42,7 +42,9 @@ jobs:
           cd src/android/frontend
           ./gradlew assembleDebug \
             -Pandroid.cxx.ndk.ccache=true \
-            -Porg.gradle.caching=true
+            -Porg.gradle.caching=true \
+            -Pandroid.injected.build.abi=arm64-v8a \
+            -Pbutterscotch.audio=fmod
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
